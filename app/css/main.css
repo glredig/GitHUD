@@ -8,3 +8,103 @@ body {
 	list-style-type: none;
 	text-indent: 0;
 }
+
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+ul.repo_list li {
+	height: 50px;
+	display: block;
+	background-color: #ffffff;
+	cursor: pointer;
+	border-bottom: 2px solid #cccccc;
+	margin: 0 5px;
+	padding: 0 15px;
+	line-height: 50px;
+}
+
+.org_info {
+	height: 100px;
+	border-bottom: 1px solid #eeeeee;
+}
+
+ul.repo_list li.selected,
+ul.repo_list li:hover {
+	background-color: #dddddd;
+}
+
+div.left_col {
+	width: 100%;
+	transition: width .8s;
+	-webkit-transition: width .8s;
+	border-right: 1px solid #eeeeee;
+}
+
+div.left_col.collapsed {
+	width: 20%;
+	float: left;
+	border-right-style: none;
+}
+
+div.right_col {
+	width: 0;
+	background-color: #eeeeee;
+	overflow-y: scroll;
+	transition: width .8s;
+	-webkit-transition: width .8s;
+}
+
+div.right_col li {
+	height: 35px;
+	border: 1px solid #bbbbbb;
+	border-top-style: none;
+	padding: 10px 5px;
+	background-color: #f7fef3;
+}
+
+div.right_col li:first-child {
+	border-top: 1px solid #bbbbbb;
+}
+
+div.right_col li span {
+	font-style: italic;
+	color: #444444;
+}
+
+div.right_col.expanded {
+	width: 80%;
+	min-height: 500px;
+	float: right;
+	-webkit-box-shadow: inset 8px -1px 16px -9px rgba(153,153,153,1);
+	-moz-box-shadow: inset 8px -1px 16px -9px rgba(153,153,153,1);
+	box-shadow: inset 8px -1px 16px -9px rgba(153,153,153,1);
+}
+
+/* Repo Row */
+li .repo_name {
+	width: 50%;
+	float: left;
+}
+
+li .repo_fork_count,
+li .repo_following,
+li .repo_open_issues_count,
+li .repo_language,
+li .repo_updated_at {
+	width: 10%;
+	color: #aaaaaa;
+	float: left;
+}
+
+li .repo_fork_count span,
+li .repo_following span,
+li .repo_open_issues_count span,
+li .repo_language span,
+li .repo_updated_at span {
+	color: #666666;
+	font-weight: bold;
+	margin-left: 5px;
+}

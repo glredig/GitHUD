@@ -5,4 +5,11 @@ app.service('repoService', function($http, $q) {
 				return data;
 			});
 	}
+
+	this.getCommits = function(org, repo) {
+		return $http.get('http://api.github.com/repos/' + org + '/' + repo + '/commits')
+			.then(function(data) {
+				return data;
+			});
+	}
 });

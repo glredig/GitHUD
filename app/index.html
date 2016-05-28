@@ -7,17 +7,40 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>GitHUD</title>
         <link rel="stylesheet" href="css/main.css">
+        <script src="https://use.fontawesome.com/c9b3a063fd.js"></script>    
     </head>
     <body>
         <header>
             GitHUD
         </header>
         <div ng-controller="ReposController">
-            <ul>
-                <li ng-repeat="repo in repos">
-                    {{ repo.name }} has {{ repo.forks_count }} forks
-                </li>
-            </ul>
+            <section class="org_info">
+                <h2>{{ org }}</h2>
+            </section>
+            <section class="repo_info">
+            <div class="left_col" ng-class="{'collapsed': selected_repo != undefined}">
+                <ul class="repo_list">
+                    <li ng-repeat="repo in repos | orderBy: '-forks_count'" ng-click='selectRepo(repo)' ng-class="{'selected': selected_repo == repo}">
+                        <div class="repo_name">
+                            {{ repo.name }} <a ng-href='{{ repo.html_url }}'><i class='fa fa-github'></i></a>
+                        </div>
+                        <div class="repo_language"><span>{{ repo.language }}</span></div>
+                        <div class="repo_fork_count"><i class='fa fa-code-fork '></i><span>{{ repo.forks_count }}</span></div>
+                        <div class="repo_following"><i class='fa fa-star '></i><span>{{ repo.stargazers_count }}</span></div>
+                        <div class="repo_open_issues_count"><i class='fa fa-exclamation-circle '></i><span>{{ repo.open_issues_count }}</span></div>
+                        <div class="repo_updated_at"><span>{{ repo.updated_at | date: 'MMM d, yyyy' }}</span></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="right_col" ng-class="{'expanded': selected_repo != undefined}">
+                <h2>Commits for {{ selected_repo.name }} <span ng-click="deselectRepo()">Close x</span></h2>
+                <ul>
+                    <li ng-repeat="commit in commits">
+                        {{ commit.commit.message }} <span>by {{ commit.author.login }}</span> <a ng-href="{{ commit.html_url }}" target="_blank">View on Github</a>
+                    </li>
+                </ul>
+            </div>
+            </section>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
         <script src="./js/app.js" type="text/javascript"></script>
