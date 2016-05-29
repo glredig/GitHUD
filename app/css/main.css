@@ -37,6 +37,16 @@ ul.repo_list li.category_header {
 	color: #88bbd6;
 }
 
+#flash {
+	height: 45px;
+	border: 1px solid #ff0000;
+	background-color: #ffaaaa;
+	line-height: 45px;
+	color: #444444;
+	font-weight: bold;
+	padding-left: 30px;
+}
+
 ul.repo_list li.selected,
 ul.repo_list li:hover {
 	background-color: #fafafa;

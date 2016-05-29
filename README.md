@@ -17,6 +17,7 @@ In order to run the specs:
 - Flash message/error reporting
 - Search on org input
 - Cache for previously searched orgs/repos
+- Spinners during data fetch
 - Filter data stored in memory from API for scalability [this app doesn't utilize anywhere close to all the data it's retaining]
 - Lazy load/infinite scroll for scalability
 - Styling

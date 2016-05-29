@@ -2,7 +2,6 @@ app.controller('ReposController', function($scope, $q, repoService) {
 	$scope.repos = [];
 	$scope.commits = [];
 	$scope.org = 'Netflix';
-	
 
 	$scope.init = function() {
 		getRepos($scope.org);
@@ -18,6 +17,7 @@ app.controller('ReposController', function($scope, $q, repoService) {
 				// console.log('repos', $scope.repos);
 			})
 			.catch(function(response) {
+				$scope.flash_message = 'There was an error retrieving repo data. Please try another organization.';
   				console.error('Repos error', response.status, response.data);
 			});	
 	}
@@ -29,6 +29,7 @@ app.controller('ReposController', function($scope, $q, repoService) {
 
 				console.log('commits', $scope.commits);
 			}).catch(function(response) {
+				$scope.flash_message = 'There was an error retrieving commits for this repo. Please try another repo.';
   				console.error('Commits error', response.status, response.data);
 			});	
 	}
@@ -44,6 +45,8 @@ app.controller('ReposController', function($scope, $q, repoService) {
 	}
 
 	$scope.toggleEdit = function() {
+		$scope.flash_message = undefined;
+		
 		if ($scope.org_edit) {
 			getRepos($scope.org);
 		}

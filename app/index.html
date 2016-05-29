@@ -23,6 +23,9 @@
                     <i class='fa fa-repeat' ng-click="toggleEdit()" ng-show="org_edit"></i>
                 </h2>
             </section>
+            <section id="flash" ng-if="flash_message">
+                {{ flash_message }}
+            </section>
             <section class="repo_info">
             <div class="left_col" ng-class="{'collapsed': selected_repo != undefined}">
                 <ul class="repo_list">
