@@ -14,10 +14,12 @@ In order to run the specs:
 
 
 # To do
-- Flash message/error reporting
+~~- Flash message/error reporting~~
+- Allow data refresh on click
 - Search on org input
 - Cache for previously searched orgs/repos
 - Spinners during data fetch
 - Filter data stored in memory from API for scalability [this app doesn't utilize anywhere close to all the data it's retaining]
 - Lazy load/infinite scroll for scalability
+- Allow live polling option
 - Styling
