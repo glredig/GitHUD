@@ -16,6 +16,9 @@ app.controller('ReposController', function($scope, $q, repoService) {
 				$scope.repos = repos.data;
 
 				// console.log('repos', $scope.repos);
+			})
+			.catch(function(response) {
+  				console.error('Repos error', response.status, response.data);
 			});	
 	}
 
@@ -25,7 +28,9 @@ app.controller('ReposController', function($scope, $q, repoService) {
 				$scope.commits = commits.data;
 
 				console.log('commits', $scope.commits);
-			});
+			}).catch(function(response) {
+  				console.error('Commits error', response.status, response.data);
+			});	
 	}
 
 	$scope.selectRepo = function(repo) {
@@ -57,6 +62,6 @@ app.controller('ReposController', function($scope, $q, repoService) {
 		}
 		else {
 			$scope.repo_filter = filter;
-		}
+2		}
 	}
 });
