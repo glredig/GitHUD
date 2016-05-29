@@ -20,10 +20,14 @@ ul.repo_list li {
 	display: block;
 	background-color: #ffffff;
 	cursor: pointer;
-	border-bottom: 2px solid #cccccc;
-	margin: 0 5px;
+	border-bottom: 1px solid #eeeeee;
+	margin: 0;
 	padding: 0 15px;
 	line-height: 50px;
+}
+
+ul.repo_list li.category_header {
+	cursor: auto;
 }
 
 .org_info {
@@ -33,7 +37,26 @@ ul.repo_list li {
 
 ul.repo_list li.selected,
 ul.repo_list li:hover {
-	background-color: #dddddd;
+	background-color: #fafafa;
+	position: relative;
+	-webkit-box-shadow: inset 0px 0px 0px 1px rgba(142,174,189,1);
+	-moz-box-shadow: inset 0px 0px 0px 1px rgba(142,174,189,1);
+	box-shadow: inset 0px 0px 0px 1px rgba(142,174,189,1);
+}
+
+ul.repo_list li.category_header:hover {
+	background-color: #ffffff;
+	position: relative;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+
+ul.repo_list li.selected::after {
+	position: absolute;
+	font-family: 'FontAwesome';
+	content: '\f054';
+	right: 10px;
 }
 
 div.left_col {
@@ -51,10 +74,19 @@ div.left_col.collapsed {
 
 div.right_col {
 	width: 0;
-	background-color: #eeeeee;
 	overflow-y: scroll;
 	transition: width .8s;
 	-webkit-transition: width .8s;
+}
+
+div.right_col h2 {
+	padding-left: 10px;
+}
+
+div.right_col h2 span {
+	float: right;
+	margin-right: 10px;
+	cursor: pointer;
 }
 
 div.right_col li {
@@ -78,15 +110,17 @@ div.right_col.expanded {
 	width: 80%;
 	min-height: 500px;
 	float: right;
-	-webkit-box-shadow: inset 8px -1px 16px -9px rgba(153,153,153,1);
-	-moz-box-shadow: inset 8px -1px 16px -9px rgba(153,153,153,1);
-	box-shadow: inset 8px -1px 16px -9px rgba(153,153,153,1);
 }
 
 /* Repo Row */
 li .repo_name {
 	width: 50%;
 	float: left;
+	font-size: 16px;
+}
+
+div.left_col.collapsed li .repo_name {
+	width: 80%;
 }
 
 li .repo_fork_count,
@@ -104,6 +138,28 @@ li .repo_following span,
 li .repo_open_issues_count span,
 li .repo_language span,
 li .repo_updated_at span {
+	color: #666666;
+	font-weight: bold;
+	margin-left: 5px;
+}
+
+div.left_col.collapsed li .repo_fork_count,
+div.left_col.collapsed li .repo_following,
+div.left_col.collapsed li .repo_open_issues_count,
+div.left_col.collapsed li .repo_language,
+div.left_col.collapsed li .repo_updated_at {
+	display: none;
+}
+
+div.left_col li.category_header span {
+	cursor: pointer;
+}
+
+div.left_col li.category_header .highlight {
+	color: #5555aa;
+}
+
+div.left_col li.category_header .repo_name span {
 	color: #666666;
 	font-weight: bold;
 	margin-left: 5px;
