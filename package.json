@@ -1,0 +1,9 @@
+{
+  "name": "GitHUD",
+  "version": "1.0.0",
+  "devDependencies": {
+    "jasmine": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-jasmine": "^1.0.2"
+  }
+}
