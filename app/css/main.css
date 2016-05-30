@@ -2,7 +2,7 @@ html,
 body {
 	padding: 0;
 	margin: 0;
-	font-family: Helvetica;
+	font-family: "Roboto", arial, Sans-serif;
 	font-size: 14px;
 	line-height: 18px;
 	list-style-type: none;
@@ -31,6 +31,10 @@ header {
 	border-bottom: 1px solid #944505;
 }
 
+a {
+	color: #f7882f;
+}
+
 .site_container {
 	min-width: 875px;
 	margin: 0 auto;
@@ -53,7 +57,7 @@ ul.repo_list li.category_header {
 
 .org_info {
 	height: 65px;
-	background-color: #f5f5f5;
+	background-color: #f8f3ed;
 	color: #6b7a8f;
 	padding: 40px 20px;
 }
@@ -86,7 +90,7 @@ ul.repo_list li.category_header {
 .org_info + div.refresh {
 	height: 35px;
 	border-bottom: 1px solid #eeeeee;
-	background-color: #f5f5f5;
+	background-color: #f8f3ed;
 	text-align: right;
 	font-size: 25px;
 	padding-right: 40px;
@@ -112,9 +116,13 @@ ul.repo_list li.selected,
 ul.repo_list li:hover {
 	background-color: #fafafa;
 	position: relative;
-	-webkit-box-shadow: inset 0px 0px 0px 1px rgba(142,174,189,1);
-	-moz-box-shadow: inset 0px 0px 0px 1px rgba(142,174,189,1);
-	box-shadow: inset 0px 0px 0px 1px rgba(142,174,189,1);
+	-webkit-box-shadow: inset 0px 0px 0px 1px rgba(251,226,157,1);
+	-moz-box-shadow: inset 0px 0px 0px 1px rgba(251,226,157,1);
+	box-shadow: inset 0px 0px 0px 1px rgba(251,226,157,1);
+}
+
+ul.repo_list li.category_header {
+	border-bottom-width: 4px;
 }
 
 ul.repo_list li.category_header:hover {
@@ -154,7 +162,8 @@ div.right_col {
 }
 
 div.right_col h2 {
-	padding-left: 10px;
+	padding: 10px;
+	color: #687a8f;
 }
 
 div.right_col h2 span {
@@ -164,11 +173,11 @@ div.right_col h2 span {
 }
 
 div.right_col li {
-	height: 35px;
+	min-height: 35px;
 	border: 1px solid #bbbbbb;
 	border-top-style: none;
 	padding: 10px 5px;
-	background-color: #f7fef3;
+	background-color: #eef4f6;
 }
 
 div.right_col li:first-child {
@@ -176,8 +185,10 @@ div.right_col li:first-child {
 }
 
 div.right_col li span {
-	font-style: italic;
 	color: #444444;
+	font-size: 12px;
+	font-weight: bold;
+	margin-right: 15px;
 }
 
 div.right_col.expanded {

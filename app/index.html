@@ -76,7 +76,7 @@
                         <li ng-repeat="commit in commits">
                             {{ commit.commit.message }}
                             <br>
-                            <span>by {{ commit.author.login }}</span> on  <a ng-href="{{ commit.html_url }}" target="_blank">View on Github</a>
+                            <span ng-if="commit.author">by {{ commit.author.login }}</span>  <a ng-href="{{ commit.html_url }}" target="_blank">View on Github</a>
                         </li>
                     </ul>
                 </div>
