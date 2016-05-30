@@ -7,70 +7,79 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>GitHUD</title>
         <link rel="stylesheet" href="css/main.css">
+        <link href='https://fonts.googleapis.com/css?family=Exo:400,900|Roboto:400,100,700' rel='stylesheet' type='text/css'>
         <script src="https://use.fontawesome.com/c9b3a063fd.js"></script>    
     </head>
     <body>
         <header>
             GitHUD
         </header>
-        <div ng-controller="ReposController" ng-init="init()">
+        <div class="site_container" ng-controller="ReposController" ng-init="init()">
             <section class="org_info">
-                <h2>
-                    {{ org }}
-                    <i class='fa fa-edit' ng-click="toggleEdit()" ng-hide="org_edit"></i>
-                    <br>
-                    <input ng-model="org" ng-show="org_edit"/>
-                    <i class='fa fa-repeat' ng-click="toggleEdit()" ng-show="org_edit"></i>
-                </h2>
+                <img class="org_avatar" ng-src="{{ org_obj.avatar_url }}" ng-if="org_obj.avatar_url"/>
+                <div class="org_details">
+                    <h1>
+                        {{ org }}
+                        <i class='fa fa-edit' ng-click="toggleEdit()" ng-hide="org_edit"></i>
+                        <br>
+                        <input ng-model="org" ng-show="org_edit"/>
+                        <i class='fa fa-repeat' ng-click="toggleEdit()" ng-show="org_edit"></i>
+                        <br>
+                        <span class="description">{{ org_obj.description }}</span>
+                    </h1>
+                </div>
             </section>
+            <div class="refresh">
+                    <i class="fa fa-repeat refresh" ng-click="getRepo(org)"></i>
+                </div>
             <section id="flash" ng-if="flash_message">
                 {{ flash_message }}
             </section>
             <section class="repo_info">
-            <div class="left_col" ng-class="{'collapsed': selected_repo != undefined}">
-                <ul class="repo_list">
-                    <li class="category_header">
-                        <div class="repo_name">
-                            <span ng-click="updateFilter('name')" ng-class="{'highlight': (repo_filter == 'name') || (repo_filter == '-name')}">Repo</span>
-                        </div>
-                        <div class="repo_language">
-                            <span ng-click="updateFilter('language')" ng-class="{'highlight': (repo_filter == 'language') || (repo_filter == '-language')}">Language</span>
-                        </div>
-                        <div class="repo_fork_count">
-                            <span ng-click="updateFilter('forks_count')" ng-class="{'highlight': (repo_filter == 'forks_count') || (repo_filter == '-forks_count')}">Forks</span>
-                        </div>
-                        <div class="repo_following">
-                            <span ng-click="updateFilter('stargazers_count')" ng-class="{'highlight': (repo_filter == 'stargazers_count') || (repo_filter == '-stargazers_count')}">Following</span>
-                        </div>
-                        <div class="repo_open_issues_count">
-                            <span ng-click="updateFilter('open_issues_count')" ng-class="{'highlight': (repo_filter == 'open_issues_count') || (repo_filter == '-open_issues_count')}">Issues</span>
-                        </div>
-                        <div class="repo_updated_at">
-                            <span ng-click="updateFilter('updated_at')" ng-class="{'highlight': (repo_filter == 'updated_at') || (repo_filter == '-updated_at')}">Last update</span>
-                        </div>
-                    </li>
-                    <li ng-repeat="repo in repos | orderBy:repo_filter" ng-click='selectRepo(repo)' ng-class="{'selected': selected_repo == repo}">
-                        <div class="repo_name">
-                            {{ repo.name }} <a ng-href='{{ repo.html_url }}'><i class='fa fa-github'></i></a>
-                        </div>
-                        <div class="repo_language"><span>{{ repo.language }}</span></div>
-                        <div class="repo_fork_count"><i class='fa fa-code-fork '></i><span>{{ repo.forks_count }}</span></div>
-                        <div class="repo_following"><i class='fa fa-star '></i><span>{{ repo.stargazers_count }}</span></div>
-                        <div class="repo_open_issues_count"><i class='fa fa-exclamation-circle '></i><span>{{ repo.open_issues_count }}</span></div>
-                        <div class="repo_updated_at"><span>{{ repo.updated_at | date: 'MMM d, yyyy' }}</span></div>
-                    </li>
-                </ul>
-            </div>
-            <div class="right_col" ng-class="{'expanded': selected_repo != undefined}">
-                <h2>Commits for {{ selected_repo.name }} <span ng-click="deselectRepo()"><i class='fa fa-times-circle-o'></i></span></h2>
-                <ul>
-                    <li ng-repeat="commit in commits">
-                        {{ commit.commit.message }}
-                        <br>
-                        <span>by {{ commit.author.login }}</span> on  <a ng-href="{{ commit.html_url }}" target="_blank">View on Github</a>
-                    </li>
-                </ul>
-            </div>
+                <div class="left_col" ng-class="{'collapsed': selected_repo != undefined}">
+                    <ul class="repo_list">
+                        <li class="category_header">
+                            <div class="repo_name">
+                                <span ng-click="updateFilter('name')" ng-class="{'highlight': (repo_filter == 'name') || (repo_filter == '-name')}">Repo</span>
+                            </div>
+                            <div class="repo_language">
+                                <span ng-click="updateFilter('language')" ng-class="{'highlight': (repo_filter == 'language') || (repo_filter == '-language')}">Language</span>
+                            </div>
+                            <div class="repo_fork_count">
+                                <span ng-click="updateFilter('forks_count')" ng-class="{'highlight': (repo_filter == 'forks_count') || (repo_filter == '-forks_count')}">Forks</span>
+                            </div>
+                            <div class="repo_following">
+                                <span ng-click="updateFilter('stargazers_count')" ng-class="{'highlight': (repo_filter == 'stargazers_count') || (repo_filter == '-stargazers_count')}">Following</span>
+                            </div>
+                            <div class="repo_open_issues_count">
+                                <span ng-click="updateFilter('open_issues_count')" ng-class="{'highlight': (repo_filter == 'open_issues_count') || (repo_filter == '-open_issues_count')}">Issues</span>
+                            </div>
+                            <div class="repo_updated_at">
+                                <span ng-click="updateFilter('updated_at')" ng-class="{'highlight': (repo_filter == 'updated_at') || (repo_filter == '-updated_at')}">Last update</span>
+                            </div>
+                        </li>
+                        <li ng-repeat="repo in repos | orderBy:repo_filter" ng-click='selectRepo(repo)' ng-class="{'selected': selected_repo == repo}">
+                            <div class="repo_name">
+                                {{ repo.name }} <a ng-href='{{ repo.html_url }}'><i class='fa fa-github'></i></a>
+                            </div>
+                            <div class="repo_language"><span>{{ repo.language }}</span></div>
+                            <div class="repo_fork_count"><i class='fa fa-code-fork '></i><span>{{ repo.forks_count }}</span></div>
+                            <div class="repo_following"><i class='fa fa-star '></i><span>{{ repo.stargazers_count }}</span></div>
+                            <div class="repo_open_issues_count"><i class='fa fa-exclamation-circle '></i><span>{{ repo.open_issues_count }}</span></div>
+                            <div class="repo_updated_at"><span>{{ repo.updated_at | date: 'MMM d, yyyy' }}</span></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="right_col" ng-class="{'expanded': selected_repo != undefined}">
+                    <h2>Commits for {{ selected_repo.name }} <span ng-click="deselectRepo()"><i class='fa fa-times-circle-o'></i></span></h2>
+                    <ul>
+                        <li ng-repeat="commit in commits">
+                            {{ commit.commit.message }}
+                            <br>
+                            <span>by {{ commit.author.login }}</span> on  <a ng-href="{{ commit.html_url }}" target="_blank">View on Github</a>
+                        </li>
+                    </ul>
+                </div>
             </section>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>

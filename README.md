@@ -9,13 +9,13 @@ UI for viewing a company's GitHub repos
 # Tests
 In order to run the specs:
 
-1. Run `npm install` in the cloned directory
+1. Run `npm install` in the cloned repo's root directory (`GitHUD/`)
 2. Run `./node_modules/karma/bin/karma start` _[This will launch a browser window as part of the process]_
 
 
 # To do
-~~- Flash message/error reporting~~
-- Allow data refresh on click
+- ~~Flash message/error reporting~~
+- ~~Allow data refresh on click~~
 - Search on org input
 - Cache for previously searched orgs/repos
 - Spinners during data fetch

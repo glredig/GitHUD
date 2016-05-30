@@ -8,6 +8,23 @@ describe('repoService', function() {
 		httpBackend = $httpBackend;
 	}));
 
+	describe('getOrg', function() {
+		it('should return a data object for the given organization', function() {
+			httpBackend.whenGET('http://api.github.com/orgs/test_org').respond(
+				{
+					org: {
+						description: 'This is a test'
+					}
+				});
+
+
+			repoService.getOrg('test_org').then(function(org_obj) {
+				expect(org_obj.data.org.description).toBe('This is a test');
+			});
+			httpBackend.flush();
+		});
+	});
+
 	describe('getRepos', function() {
 		it('should return an array of repo objects for the given organization', function() {
 			httpBackend.whenGET('http://api.github.com/orgs/test_org/repos').respond(
@@ -23,19 +40,6 @@ describe('repoService', function() {
 
 
 			repoService.getRepos('test_org').then(function(repos) {
-				var repos_data = {
-					data: [
-						{
-							name: 'repo1',
-						},
-
-						{
-							name: 'repo2'
-						}
-					]
-				};
-
-				console.log('repos', repos.data.repos[0].name);
 				expect(repos.data.repos[0].name).toBe('repo1');
 			});
 			httpBackend.flush();
@@ -57,18 +61,6 @@ describe('repoService', function() {
 
 
 			repoService.getCommits('test_org', 'repo1').then(function(commits) {
-				var commits_data = {
-					data: [
-						{
-							message: 'commit1',
-						},
-
-						{
-							message: 'commit2'
-						}
-					]
-				};
-
 				expect(commits.data.commits[0].message).toBe('commit1');
 			});
 			httpBackend.flush();

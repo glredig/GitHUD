@@ -4,17 +4,27 @@ app.controller('ReposController', function($scope, $q, repoService) {
 	$scope.org = 'Netflix';
 
 	$scope.init = function() {
+		getOrg($scope.org);
 		getRepos($scope.org);
 		$scope.org_edit = false;
 		$scope.repo_filter = '-forks_count';
+	}
+
+	function getOrg(org) {
+		repoService.getOrg(org)
+			.then(function(org_obj) {
+				$scope.org_obj = org_obj.data;
+			})
+			.catch(function(response) {
+				$scope.flash_message = 'There was an error retrieving organization data. Please try another organization.';
+  				console.error('Orgs error', response.status, response.data);
+			});	
 	}
 
 	function getRepos(org) {
 		repoService.getRepos(org)
 			.then(function(repos) {
 				$scope.repos = repos.data;
-
-				// console.log('repos', $scope.repos);
 			})
 			.catch(function(response) {
 				$scope.flash_message = 'There was an error retrieving repo data. Please try another organization.';
@@ -27,7 +37,6 @@ app.controller('ReposController', function($scope, $q, repoService) {
 			.then(function(commits) {
 				$scope.commits = commits.data;
 
-				console.log('commits', $scope.commits);
 			}).catch(function(response) {
 				$scope.flash_message = 'There was an error retrieving commits for this repo. Please try another repo.';
   				console.error('Commits error', response.status, response.data);
@@ -46,8 +55,9 @@ app.controller('ReposController', function($scope, $q, repoService) {
 
 	$scope.toggleEdit = function() {
 		$scope.flash_message = undefined;
-		
+
 		if ($scope.org_edit) {
+			getOrg($scope.org);
 			getRepos($scope.org);
 		}
 

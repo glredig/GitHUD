@@ -9,10 +9,31 @@ body {
 	text-indent: 0;
 }
 
+h1, h2, h3 {
+	margin: 0;
+}
+
 ul {
 	list-style: none;
 	margin: 0;
 	padding: 0;
+}
+
+header {
+	background-color: #f7882f;
+	height: 50px;
+	padding-left: 20px;
+	font-family: "Exo", Arial, Sans-serif;
+	font-weight: 900;
+	font-size: 20px;
+	line-height: 50px;
+	color: #944505;
+	border-bottom: 1px solid #944505;
+}
+
+.site_container {
+	min-width: 875px;
+	margin: 0 auto;
 }
 
 ul.repo_list li {
@@ -31,10 +52,50 @@ ul.repo_list li.category_header {
 }
 
 .org_info {
-	height: 100px;
+	height: 65px;
+	background-color: #f5f5f5;
+	color: #6b7a8f;
+	padding: 40px 20px;
+}
+
+.org_info img.org_avatar {
+	max-width: 100px;
+	max-height: 75px;
+	float: left;
+	margin-right: 15px;
+}
+
+.org_info .org_details {
+	float: left;
+}
+
+.org_info h1 {
+	font-size: 40px;
+	padding-top: 10px;
+}
+
+.org_info h1 i {
+	font-size: 18px;
+	line-height: 40px;
+}
+
+.org_info span.description {
+	font-size: 14px;
+}
+
+.org_info + div.refresh {
+	height: 35px;
 	border-bottom: 1px solid #eeeeee;
-	background-color: #e9e9e9;
-	color: #88bbd6;
+	background-color: #f5f5f5;
+	text-align: right;
+	font-size: 25px;
+	padding-right: 40px;
+	color: #6b7a8f;
+}
+
+.org_info + div.refresh i {
+	cursor: pointer;
+	font-size: 25px;
 }
 
 #flash {
@@ -89,6 +150,7 @@ div.right_col {
 	overflow-y: scroll;
 	transition: width .8s;
 	-webkit-transition: width .8s;
+	float: right;
 }
 
 div.right_col h2 {
@@ -168,7 +230,7 @@ div.left_col li.category_header span {
 }
 
 div.left_col li.category_header .highlight {
-	color: #5555aa;
+	color: #f7882f;
 }
 
 div.left_col li.category_header .repo_name span {
