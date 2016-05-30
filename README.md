@@ -1,7 +1,8 @@
 # GitHUD #
 
-UI built with Angular 1.4.5 for viewing a company's GitHub repos
-By default, the app starts with the organization set to Neflix, with its repos sorted by the number of forks in decreasing order.
+UI built with Angular 1.4.5 for viewing a company's GitHub repos.
+
+By default, the app starts with the organization set to Netflix, with its repos sorted by the number of forks in decreasing order.
 
 #### Features: ####
 - Change organization by clicking the edit icon next to the current name. Click the refresh icon to load repos for the organization.
@@ -15,7 +16,7 @@ By default, the app starts with the organization set to Neflix, with its repos s
 2. Open `app/index.html` in your browser of choice
 
 ## Tests ##
-This app uses [Karma](https://karma-runner.github.io/0.13/intro/installation.html) and [Jasmine](http://jasmine.github.io/)
+This app uses [Karma](https://karma-runner.github.io/0.13/intro/installation.html) and [Jasmine](http://jasmine.github.io/).
 In order to run the specs:
 
 1. Run `npm install` in the cloned repo's root directory (`GitHUD/`)
