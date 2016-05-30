@@ -36,7 +36,6 @@ app.controller('ReposController', function($scope, $q, repoService) {
 		repoService.getCommits($scope.org, repo) 
 			.then(function(commits) {
 				$scope.commits = commits.data;
-				console.log("commits", $scope.commits);
 
 			}).catch(function(response) {
 				$scope.flash_message = 'There was an error retrieving commits for this repo. Please try another repo.';
